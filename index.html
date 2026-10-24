@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EVENIR – AI Solutions Built Around Your Business</title>
+<meta name="description" content="EVENIR helps businesses use AI to solve real business problems: custom AI, automation, AI agents, data intelligence and integration.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2319929B'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Brand colours */
+  --teal:#19929B; --gray:#5B5B5B; --light:#D5E9EB; --orange:#FF8243;
+  /* Supporting neutrals (+ one deeper teal shade for accessible text/buttons) */
+  --teal-d:#0E6B73; --ink:#172023; --off:#F6F9F9; --line:#D9E3E4; --white:#fff;
+  /* Spacing tokens */
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s9:80px;--s10:96px;--s11:120px;
+  --sec:clamp(var(--s8),9vw,var(--s11));
+  --r:14px; --max:1200px;
+  /* Type scale */
+  --f-display:clamp(2.5rem,5.6vw,4.5rem);--f-h1:clamp(2.25rem,4.4vw,3.5rem);--f-h2:clamp(1.75rem,3vw,2.5rem);
+  --f-h3:1.375rem;--f-h4:1.125rem;--f-lg:1.1875rem;--f-b:1rem;--f-sm:.875rem;--f-cap:.8125rem;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:var(--f-b);line-height:1.65;color:var(--gray);background:var(--white);overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+h1,h2,h3,h4{color:var(--ink);line-height:1.12;letter-spacing:-.02em;font-weight:800}
+h1{font-size:var(--f-h1)}h2{font-size:var(--f-h2)}h3{font-size:var(--f-h3);line-height:1.25;letter-spacing:-.01em}h4{font-size:var(--f-h4);line-height:1.3}
+.display{font-size:var(--f-display);letter-spacing:-.035em;line-height:1.04}
+p{max-width:64ch}.lg{font-size:var(--f-lg)}.sm{font-size:var(--f-sm)}.cap{font-size:var(--f-cap)}
+a{color:var(--teal-d);text-decoration:none}
+:focus-visible{outline:3px solid var(--teal-d);outline-offset:3px;border-radius:6px}
+.dark :focus-visible,.hdr.top :focus-visible{outline-color:#fff}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:var(--s3) var(--s4);border-radius:8px;z-index:100}.skip:focus{left:8px}
+.wrap{width:min(var(--max),100% - 2*var(--s5));margin-inline:auto}
+section{padding-block:var(--sec)}
+.alt{background:var(--off)}
+.dark{background:var(--ink);color:#B7C4C6}.dark h1,.dark h2,.dark h3,.dark h4{color:#fff}
+.sh{margin-bottom:var(--s7);display:grid;gap:var(--s4)}.sh.c{justify-items:center;text-align:center}
+.tag{font-size:var(--f-cap);font-weight:700;color:var(--teal-d)}.dark .tag{color:var(--light)}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);min-height:48px;padding:0 var(--s5);border-radius:999px;font:700 var(--f-b)/1 'Manrope',sans-serif;border:2px solid transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s;white-space:nowrap}
+.btn:active{transform:translateY(1px)}
+.btn-p{background:var(--teal-d);color:#fff}.btn-p:hover{background:var(--ink)}
+.btn-s{background:transparent;border-color:var(--ink);color:var(--ink)}.btn-s:hover{background:var(--ink);color:#fff}
+.dark .btn-s{border-color:#fff;color:#fff}.dark .btn-s:hover{background:#fff;color:var(--ink)}
+.btn-o{background:var(--orange);color:var(--ink)}.btn-o:hover{background:#fff}
+.btn-t{white-space:normal;text-align:left;min-height:44px;padding:0;border-radius:6px;color:var(--teal-d);background:none}.btn-t:hover{gap:var(--s3)}.dark .btn-t{color:var(--light)}
+.btn[disabled],.btn[aria-disabled=true]{opacity:.45;pointer-events:none}
+.row{display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center}
+/* Header */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:box-shadow .2s}
+.hdr .in{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:inline-flex;align-items:center;gap:var(--s2);font-weight:800;font-size:1.375rem;letter-spacing:.04em;color:var(--ink)}
+.logo img{height:40px;width:auto}.flogo{background:#fff;padding:var(--s2) var(--s4);border-radius:10px}.logo i{width:26px;height:26px;border-radius:8px;background:var(--teal);position:relative}.logo i:after{content:"";position:absolute;inset:8px;border-radius:50%;background:#fff}
+.nav{display:flex;align-items:center;gap:var(--s6)}
+.nav a.l{color:var(--ink);font-weight:600;font-size:var(--f-sm);padding:var(--s2) 0;border-bottom:2px solid transparent;transition:border-color .2s,color .2s}
+.nav a.l:hover{color:var(--teal-d);border-color:var(--light)}.nav a.l[aria-current=page]{border-color:var(--teal)}
+.burger{display:none;width:48px;height:48px;border:1px solid var(--line);background:#fff;border-radius:12px;cursor:pointer;align-items:center;justify-content:center}
+.burger span,.burger span:before,.burger span:after{display:block;width:20px;height:2px;background:var(--ink);position:relative;transition:.2s}
+.burger span:before,.burger span:after{content:"";position:absolute;left:0}.burger span:before{top:-6px}.burger span:after{top:6px}
+.burger[aria-expanded=true] span{background:transparent}.burger[aria-expanded=true] span:before{top:0;transform:rotate(45deg)}.burger[aria-expanded=true] span:after{top:0;transform:rotate(-45deg)}
+@media(max-width:900px){
+  .burger{display:flex}
+  .nav{position:fixed;inset:72px 0 0;background:#fff;flex-direction:column;align-items:stretch;gap:0;padding:var(--s5);transform:translateY(-8px);opacity:0;visibility:hidden;transition:.2s;overflow:auto}
+  .nav.open{transform:none;opacity:1;visibility:visible}
+  .nav a.l{font-size:1.5rem;padding:var(--s4) 0;border-bottom:1px solid var(--line)}
+  .nav .btn{margin-top:var(--s5);min-height:56px}
+}
+/* Hero */
+.hero{padding-block:clamp(var(--s8),8vw,var(--s10)) var(--sec);background:radial-gradient(60% 60% at 85% 20%,var(--light),transparent 70%),#fff}
+.hero .g{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--s8);align-items:center}
+.hero p{margin-block:var(--s5) var(--s6)}
+.viz{width:100%;height:auto;max-width:600px;justify-self:end}
+.viz .nd{transition:transform .3s}.viz .nd:hover{transform:scale(1.04)}
+.viz .pulse{animation:pl 4s ease-in-out infinite;transform-origin:260px 240px}
+@keyframes pl{50%{opacity:.55}}
+@media(max-width:900px){.hero .g{grid-template-columns:1fr;gap:var(--s7)}.viz{justify-self:center}}
+.page-h{padding-block:var(--s10) var(--s8);background:linear-gradient(180deg,var(--off),#fff)}
+.page-h p{margin-top:var(--s4)}
+.crumb{font-size:var(--f-sm);margin-bottom:var(--s4)}
+/* Strip */
+.strip{padding-block:var(--s7);border-block:1px solid var(--line)}
+.strip .in{display:flex;flex-wrap:wrap;gap:var(--s4) var(--s6);align-items:center;justify-content:space-between}
+.chips{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.chip{padding:var(--s2) var(--s4);border:1px solid var(--line);border-radius:999px;font-size:var(--f-sm);font-weight:600;color:var(--ink);background:#fff;min-height:40px;display:inline-flex;align-items:center;cursor:pointer;transition:.2s}
+a.chip:hover,button.chip:hover{border-color:var(--teal);color:var(--teal-d)}
+button.chip[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+/* Feature */
+.feat{border-radius:28px;padding:clamp(var(--s6),5vw,var(--s9));display:grid;grid-template-columns:1fr 1fr;gap:var(--s8);align-items:center;position:relative;overflow:hidden;background:var(--ink)}
+.feat:before{content:"";position:absolute;right:-120px;top:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(25,146,155,.45),transparent 65%)}
+.feat>*{position:relative}.feat p{margin-block:var(--s4) var(--s6)}
+.flow{display:grid;gap:var(--s2);list-style:none;padding:0}
+.flow li{display:flex;align-items:center;gap:var(--s4);padding:var(--s4) var(--s5);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);background:rgba(255,255,255,.04);color:#fff;font-weight:700}
+.flow li small{display:block;font-weight:500;color:#9FB1B4;font-size:var(--f-cap)}
+.flow li b{width:36px;height:36px;border-radius:50%;background:var(--teal);display:grid;place-items:center;flex:none;font-size:var(--f-sm)}
+.flow li:last-child{border-color:var(--orange)}.flow li:last-child b{background:var(--orange);color:var(--ink)}
+.flow .ar{height:14px;margin-left:var(--s6);border-left:2px dashed rgba(255,255,255,.3)}
+@media(max-width:900px){.feat{grid-template-columns:1fr;gap:var(--s7);border-radius:20px}}
+/* Cards */
+.grid{display:grid;gap:var(--s5)}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1000px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{display:flex;flex-direction:column;gap:var(--s3);padding:var(--s6);background:#fff;border:1px solid var(--line);border-radius:var(--r);color:var(--gray);transition:border-color .2s,box-shadow .2s,transform .2s}
+.card h3,.card h4{color:var(--ink)}
+a.card:hover{border-color:var(--teal);box-shadow:0 12px 32px -16px rgba(14,107,115,.35);transform:translateY(-2px)}
+.card .go{margin-top:auto;padding-top:var(--s3);font-weight:700;color:var(--teal-d);display:flex;align-items:center;gap:var(--s2);transition:gap .2s}
+a.card:hover .go{gap:var(--s3)}
+.num{font-weight:800;color:var(--teal);font-size:var(--f-sm)}
+.ico{width:48px;height:48px;border-radius:12px;background:var(--light);display:grid;place-items:center;color:var(--teal-d)}
+.port{grid-template-columns:repeat(3,1fr)}
+.port .w{background:var(--light);border-color:var(--light)}
+@media(max-width:1000px){.port{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){.port{grid-template-columns:1fr}}
+.vis{aspect-ratio:16/10;border-radius:10px;background:var(--off);margin-bottom:var(--s2);overflow:hidden}.vis img{width:100%;height:100%;object-fit:cover}.w .vis{background:rgba(255,255,255,.55)}.thumb img.contain{width:100%;height:100%;object-fit:contain}.thumb .vis{aspect-ratio:auto;height:100%;margin:0;border-radius:0}.ico img{width:32px;height:32px;object-fit:contain}
+.cs .thumb{aspect-ratio:16/9;border-radius:10px;background:linear-gradient(135deg,var(--light),#fff);overflow:hidden;margin-bottom:var(--s2)}
+.ph{font-size:var(--f-cap);font-weight:600;color:var(--gray);background:var(--off);border:1px dashed var(--line);border-radius:8px;padding:var(--s1) var(--s3);align-self:flex-start}
+/* Process */
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s5);position:relative;list-style:none;padding:0}
+.steps:before{content:"";position:absolute;left:0;right:0;top:19px;border-top:2px dashed var(--teal);opacity:.4}
+.steps li{position:relative;padding-top:var(--s8)}
+.steps li b{position:absolute;top:0;left:0;width:40px;height:40px;border-radius:50%;background:var(--teal-d);color:#fff;display:grid;place-items:center;font-size:var(--f-sm)}
+.steps li:last-child b{background:var(--orange);color:var(--ink)}
+.steps h3{margin-bottom:var(--s2)}
+@media(max-width:800px){.steps{grid-template-columns:1fr}.steps:before{display:none}.steps li{padding:0 0 var(--s3) var(--s8);border-left:2px dashed rgba(25,146,155,.4);margin-left:19px;padding-left:var(--s7)}.steps li b{left:-21px}}
+/* Accordion */
+.acc{border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:var(--s4);align-items:center;padding:var(--s5) 0;font-weight:700;color:var(--ink);font-size:var(--f-h4);min-height:56px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";font-size:1.5rem;color:var(--teal-d);transition:transform .2s;flex:none}
+details[open]>summary:after{transform:rotate(45deg)}
+details .body{padding-bottom:var(--s6)}
+/* Split blocks */
+.split{display:grid;grid-template-columns:1fr 1.2fr;gap:var(--s8);align-items:start}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:var(--s6)}}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5)}.ba .card:last-child{border-color:var(--teal);background:var(--off)}
+@media(max-width:640px){.ba{grid-template-columns:1fr}}
+.list{padding:0;list-style:none;display:grid;gap:var(--s3)}
+.list li{padding-left:var(--s6);position:relative}.list li:before{content:"";position:absolute;left:0;top:.6em;width:14px;height:2px;background:var(--teal)}
+.cta{background:var(--ink);text-align:center;position:relative;overflow:hidden}
+.cta:before{content:"";position:absolute;left:50%;top:-240px;width:720px;height:480px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(25,146,155,.4),transparent)}
+.cta .wrap{position:relative;display:grid;justify-items:center;gap:var(--s5)}.cta h2{color:#fff}.cta p{color:#B7C4C6}
+/* Forms */
+.form{display:grid;gap:var(--s5)}.fr{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5)}@media(max-width:640px){.fr{grid-template-columns:1fr}}
+.fld{display:grid;gap:var(--s2)}.fld label{font-weight:700;color:var(--ink);font-size:var(--f-sm)}
+.fld input,.fld select,.fld textarea{font:inherit;color:var(--ink);min-height:52px;padding:var(--s3) var(--s4);border:1.5px solid #AEBDBF;border-radius:12px;background:#fff;width:100%;transition:border-color .2s,box-shadow .2s}
+.fld textarea{min-height:140px;resize:vertical}
+.fld input:hover,.fld select:hover,.fld textarea:hover{border-color:var(--teal)}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--teal-d);box-shadow:0 0 0 4px var(--light)}
+.fld[data-err] input,.fld[data-err] select,.fld[data-err] textarea{border-color:#B3261E}
+.err{color:#B3261E;font-size:var(--f-sm);font-weight:600;display:none}.fld[data-err] .err{display:block}
+.ok{border:1.5px solid var(--teal);background:var(--off);border-radius:var(--r);padding:var(--s7);display:grid;gap:var(--s3)}
+.cbox{display:flex;gap:var(--s3);align-items:flex-start;font-size:var(--f-sm)}.cbox input{width:22px;height:22px;accent-color:var(--teal-d);margin-top:2px}
+.clients{padding-block:var(--s8);border-bottom:1px solid var(--line)}.cl{list-style:none;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:var(--s6) var(--s5);align-items:center}.cl li{display:grid;place-items:center;height:44px}.cl img{max-height:36px;max-width:120px;width:auto;filter:grayscale(1);opacity:.75;transition:.2s}.cl img:hover{filter:none;opacity:1}@media(max-width:900px){.cl{grid-template-columns:repeat(3,1fr)}}@media(max-width:480px){.cl{grid-template-columns:repeat(2,1fr)}}
+.itico{width:64px;height:64px;object-fit:contain}.photo{width:100%;height:auto;border-radius:var(--r);margin-top:var(--s6);aspect-ratio:3/2;object-fit:cover}.deco{width:100%;max-width:640px;margin:var(--s7) auto 0;opacity:.9}
+/* Footer */
+.ft{background:var(--ink);color:#9FB1B4;padding-block:var(--s9) var(--s6)}
+.ft .logo{color:#fff}.ft h4{color:#fff;font-size:var(--f-sm);margin-bottom:var(--s4)}
+.ft .cols{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:var(--s7)}@media(max-width:700px){.ft .cols{grid-template-columns:1fr}}
+.ft a{color:#B7C4C6;display:inline-block;padding:var(--s1) 0}.ft a:hover{color:#fff}
+.ft ul{list-style:none;padding:0;display:grid;gap:var(--s2)}
+.ft .bt{margin-top:var(--s8);padding-top:var(--s5);border-top:1px solid rgba(255,255,255,.12);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s4);font-size:var(--f-cap)}
+.ft .bt div{display:flex;gap:var(--s5)}
+.nf{min-height:70vh;display:grid;place-items:center;text-align:center}.nf>div{display:grid;gap:var(--s5);justify-items:center}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr"><div class="wrap in">
+  <a class="logo" href="#/" aria-label="EVENIR – home"><img src="assets/evenir-logo.svg" alt="EVENIR" width="130" height="40"></a>
+  <button class="burger" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span></span></button>
+  <nav class="nav" id="nav" aria-label="Main">
+    <a class="l" href="#/solutions">Solutions</a><a class="l" href="#/services">Services</a>
+    <a class="l" href="#/case-studies">Case Studies</a><a class="l" href="#/about">About</a><a class="l" href="#/contact">Contact</a>
+    <a class="btn btn-o" href="#/contact">Let’s Talk</a>
+  </nav>
+</div></header>
+<main id="main" tabindex="-1"></main>
+<footer class="ft"><div class="wrap">
+  <div class="cols">
+    <div><a class="logo flogo" href="#/" aria-label="EVENIR – home"><img src="assets/evenir-logo.svg" alt="EVENIR" width="130" height="40"></a><p class="sm" style="margin-top:16px">AI solutions for businesses: strategy, custom systems, automation and data intelligence.</p></div>
+    <div><h4>Explore</h4><ul><li><a href="#/solutions">Solutions</a></li><li><a href="#/services">Services</a></li><li><a href="#/case-studies">Case Studies</a></li><li><a href="#/about">About</a></li><li><a href="#/contact">Contact</a></li></ul></div>
+    <div><h4>Connect</h4><ul><li><a id="fl" href="#/contact">LinkedIn</a></li><li><a id="fe" href="#/contact">Email</a></li></ul></div>
+  </div>
+  <div class="bt"><span>© <span id="yr"></span> EVENIR. All rights reserved.</span><div><a href="#/contact">Privacy</a><a href="#/contact">Terms</a></div></div>
+</div></footer>
+
+<script>
+/* ============ CONFIG – edit these ============ */
+const CONFIG={
+  email:'',            // e.g. 'info@evenir.cz'
+  linkedin:'',         // full LinkedIn company URL
+  formEndpoint:''      // e.g. a Formspree/Netlify/your CMS endpoint. Empty = demo success only
+};
+/* ============ CONTENT – replace with final copy ============ */
+const SOL=[
+ ['custom-ai','Custom AI Solutions','AI built around your processes, data and goals.'],
+ ['automation','AI Automation','Remove repetitive work from core workflows.'],
+ ['agents','AI Agents','Assistants that act on tasks across your systems.'],
+ ['data','Data & Intelligence','Turn business data into clear decisions.'],
+ ['integration','AI Integration','Connect AI to the tools you already use.'],
+ ['consulting','AI Consulting','Find where AI creates real value first.']];
+const SVC=[
+ ['AI Strategy',[['ai-consulting','AI Consulting','Expert guidance on where AI fits your business.'],['ai-readiness','AI Readiness','Assess data, systems and teams before you invest.'],['ai-roadmapping','AI Roadmapping','A prioritised plan from first pilot to scale.']]],
+ ['Custom AI Solutions',[['custom-ai','Custom AI Development','AI systems designed around your unique processes.'],['ai-agents','AI Agents','Task-focused agents working inside your operations.'],['intelligent-systems','Intelligent Systems','Connected models and logic for complex decisions.']]],
+ ['AI Automation',[['workflow-automation','Workflow Automation','Automate multi-step work across teams and tools.'],['process-automation','Process Automation','Standardise and speed up recurring processes.'],['ai-operations','AI-powered Operations','Keep operations running with intelligent monitoring.']]],
+ ['Data & Intelligence',[['data-analysis','Data Analysis','Find patterns and answers in your existing data.'],['predictive-intelligence','Predictive Intelligence','Forecast demand, risk and outcomes.'],['business-intelligence','Business Intelligence','Dashboards leaders can trust and use.']]]];
+const CASES=[
+ ['case-study-1','Industry / Category A','Project title placeholder one','Short description of the business challenge and the AI approach. Replace with your final text.','Custom AI'],
+ ['case-study-2','Industry / Category B','Project title placeholder two','Short description of the business challenge and the AI approach. Replace with your final text.','AI Automation'],
+ ['case-study-3','Industry / Category C','Project title placeholder three','Short description of the business challenge and the AI approach. Replace with your final text.','Data & Intelligence']];
+const CLIENTS=[['accenture', 'Accenture'], ['allianz', 'Allianz'], ['dhl', 'DHL'], ['generali', 'Generali'], ['pimco', 'PIMCO'], ['hcl-new', 'HCL'], ['pewag', 'pewag'], ['drees', 'Drees'], ['volarik', 'Volařík'], ['chmu', 'ČHMÚ'], ['cvut', 'ČVUT'], ['msmt', 'MŠMT']];
+const IT=[['outsourcing','IT Outsourcing'],['microsoft','Microsoft'],['infrastructure','Infrastructure Management'],['it-security','IT Security'],['cloud','Cloud'],['virtual-tour','Virtual Tour']];
+const itGrid=()=>`<div class="grid g3">${IT.map(x=>`<a class="card" href="#/contact"><img class="itico" src="assets/icons/${x[0]}.png" alt="" width="64" height="64" loading="lazy"><h4>${x[1]}</h4><span class="go">Ask about this ${ARR}</span></a>`).join('')}</div>`;
+const VAL=[['Automate repetitive work','Free skilled people for higher-value tasks.'],['Make faster decisions','Bring the right information to the right person sooner.'],['Unlock valuable data','Use information your business already holds.'],['Improve efficiency','Reduce friction across daily operations.'],['Build scalable systems','Grow without adding the same manual effort.']];
+const FAQ=[['How do we know AI is right for our business?','We start by reviewing your processes and data to find opportunities with clear business value, before any build begins.'],['Do you work with our existing systems?','Yes. Solutions are designed to connect with the tools and data sources you already use.'],['How long does a project take?','Timelines depend on scope. After a discovery conversation we provide a clear plan and milestones.']];
+/* ============ HELPERS ============ */
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const ARR='<span aria-hidden="true">→</span>';
+const IC=['outsourcing','infrastructure','it-security','cloud','virtual-tour','microsoft'];
+const icon=n=>`<img src="assets/icons/${IC[n%6]}.png" alt="" width="32" height="32" loading="lazy">`;
+const VIS={s0:'dashboard',s1:'platform',s2:'network',s3:'analytics',s4:'team-board',c0:'steps',c1:'analytics',c2:'team-board'};
+const vis=k=>k=='s5'?`<div class="vis"><img src="assets/team-meeting-768.jpg" srcset="assets/team-meeting-300.jpg 300w, assets/team-meeting-768.jpg 768w" sizes="(max-width:640px) 90vw, 400px" alt="EVENIR team in a meeting room" loading="lazy"></div>`:`<div class="vis"><img src="assets/visuals/${VIS[k]}.jpg" alt="" loading="lazy"></div>`;
+const head=(tag,t,p,c)=>`<div class="sh ${c?'c':''}"><h2>${t}</h2>${p?`<p class="lg">${p}</p>`:''}</div>`;
+const cta=(t,p,b,h)=>`<section class="cta"><div class="wrap"><h2>${t}</h2><p class="lg">${p}</p><a class="btn btn-o" href="${h||'#/contact'}">${b}</a></div></section>`;
+const faq=()=>`<div class="acc">${FAQ.map(f=>`<details><summary>${f[0]}</summary><div class="body"><p>${f[1]}</p></div></details>`).join('')}</div>`;
+const pageH=(crumb,t,p,btn)=>`<section class="page-h"><div class="wrap"><p class="crumb">${crumb}</p><h1>${t}</h1><p class="lg">${p}</p>${btn||''}</section>`.replace('</section>','</div></section>');
+const solCard=(s,i,w)=>`<a class="card ${w?'w':''}" href="#/solutions/${s[0]}"><span class="num">0${i+1}</span>${vis('s'+i)}<h3>${s[1]}</h3><p class="sm">${s[2]}</p><span class="go">Learn more ${ARR}</span></a>`;
+const caseCard=c=>`<a class="card cs" href="#/case-studies/${c[0]}" data-cat="${c[4]}"><div class="thumb">${vis('c'+CASES.findIndex(x=>x===c))}</div><span class="cap" style="font-weight:700;color:var(--teal-d)">${c[1]}</span><h3>${c[2]}</h3><p class="sm">${c[3]}</p><span class="cap"><b>AI capability:</b> ${c[4]}</span><span class="go">View Case Study ${ARR}</span></a>`;
+const heroViz=()=>`<img class="viz" src="assets/hero-illustration.svg" width="1767" height="1245" alt="Illustration of connected business data, analytics and people around a central intelligence platform">`;
+/* ============ TEMPLATES ============ */
+const T={};
+T.home=()=>`
+<section class="hero"><div class="wrap g"><div>
+  <h1 class="display">AI solutions built around your business.</h1>
+  <p class="lg">From intelligent automation to custom AI systems, we help businesses turn complex challenges into scalable opportunities.</p>
+  <div class="row"><a class="btn btn-p" href="#/solutions">Explore AI Solutions</a><a class="btn btn-s" href="#/case-studies">View Case Studies</a></div>
+</div>${heroViz()}</div></section>
+<div class="strip"><div class="wrap in"><h2 style="font-size:var(--f-h4)">Intelligence built for modern businesses.</h2>
+ <ul class="chips" style="list-style:none;padding:0">${['AI Strategy','Custom AI','Automation','Data Intelligence','AI Integration'].map(c=>`<li class="chip" style="cursor:default">${c}</li>`).join('')}</ul></div></div>
+<section class="clients" aria-label="Our clients"><div class="wrap"><h2 style="font-size:var(--f-h4);margin-bottom:var(--s5)">Trusted by organisations across industries</h2><ul class="cl">${CLIENTS.map(c=>`<li><img src="assets/clients/${c[0]}.svg" alt="${c[1]}" loading="lazy"></li>`).join('')}</ul></div></section>
+<section><div class="wrap"><div class="feat dark"><div>
+  <h2>Custom AI solutions for businesses</h2>
+  <p class="lg">AI solutions designed around your unique processes, data and business goals.</p>
+  <a class="btn btn-o" href="#/services/custom-ai">Explore Custom AI</a></div>
+  <ol class="flow" aria-label="Custom AI process"><li><b>1</b><span>Business Challenge<small>Where work is slow, manual or unclear</small></span></li><div class="ar" aria-hidden="true"></div>
+  <li><b>2</b><span>AI Analysis<small>Your data, processes and constraints</small></span></li><div class="ar" aria-hidden="true"></div>
+  <li><b>3</b><span>Custom AI System<small>Built and integrated for your team</small></span></li><div class="ar" aria-hidden="true"></div>
+  <li><b>4</b><span>Business Outcome<small>Measured against your goals</small></span></li></ol></div></div></section>
+<section class="alt"><div class="wrap">${head('','AI solutions designed for business impact','Six focused capabilities that work alone or together.')}
+ <div class="grid port">${SOL.map((s,i)=>solCard(s,i,i==0||i==3)).join('')}</div></div></section>
+<section><div class="wrap">${head('','From business challenge to AI advantage')}
+ <ol class="steps">${[['Discover','Understand the business challenge.'],['Strategize','Identify meaningful AI opportunities.'],['Build','Develop the right AI solution.'],['Scale','Optimize and expand the solution.']].map((s,i)=>`<li><b>${i+1}</b><h3>${s[0]}</h3><p class="sm">${s[1]}</p></li>`).join('')}</ol></div></section>
+<section class="alt" id="cases"><div class="wrap">${head('','AI in action','Real challenges. Intelligent solutions. Measurable outcomes.')}
+ <div class="grid g3">${CASES.map(caseCard).join('')}</div>
+ <div style="margin-top:var(--s7)"><a class="btn btn-s" href="#/case-studies">All case studies</a></div></div></section>
+<section><div class="wrap">${head('','Why AI matters to your business')}
+ <div class="grid g3">${VAL.map((v,i)=>`<div class="card"><div class="ico">${icon(i)}</div><h3>${v[0]}</h3><p class="sm">${v[1]}</p></div>`).join('')}</div></div></section>
+${cta('Ready to build what’s next?','Let’s explore how AI can create measurable value for your business.','Start a Conversation')}`;
+
+T.services=()=>pageH('Services','AI services designed for business growth','Four categories, each built to grow as our catalogue does. Open a category to see its services.',
+ `<div class="chips" style="margin-top:32px">${SVC.map((c,i)=>`<a class="chip" href="#cat${i}" data-jump="cat${i}">${c[0]}</a>`).join('')}</div>`)+
+ `<section style="padding-top:var(--s6)"><div class="wrap"><div class="acc">${SVC.map((c,i)=>`<details id="cat${i}" open><summary><span><span class="num">0${i+1}</span>&nbsp; ${c[0]}</span></summary><div class="body"><div class="grid g3">${c[1].map(s=>`<a class="card" href="#/services/${s[0]}"><div class="ico">${icon(i)}</div><h4>${s[1]}</h4><p class="sm">${s[2]}</p><span class="go">Learn more ${ARR}</span></a>`).join('')}</div></div></details>`).join('')}</div></div></section>`+
+ `<section class="alt"><div class="wrap">${head('','Also from EVENIR: IT services','The infrastructure and IT foundation that AI solutions run on.')}${itGrid()}</div></section>`+
+ cta('Not sure where to start?','Tell us the business problem and we’ll point to the right service.','Talk to an AI Expert');
+
+const detail=(kind,slug)=>{
+ const all=kind=='services'?SVC.flatMap(c=>c[1]):SOL; const it=all.find(x=>x[0]==slug); if(!it)return null;
+ const n=it[1],flag=slug=='custom-ai'&&kind=='services',lc=n.toLowerCase(),back=kind=='services'?'#/services':'#/solutions',bl=kind=='services'?'Services':'Solutions';
+ const rel=CASES[0]; const sx=(t,b)=>`<section><div class="wrap split"><h2>${t}</h2><div>${b}</div></div></section>`;
+ const li=a=>`<ul class="list">${a.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+ return pageH(`<a href="${back}">${bl}</a> / ${n}`,flag?'AI built specifically for your business':n,flag?'Systems designed around your processes, your data and your goals, not an off-the-shelf tool.':it[2],`<div style="margin-top:32px"><a class="btn btn-p" href="#/contact">Talk to an AI Expert</a></div>`)+
+ sx('Overview',`<p class="lg">${it[2]} We shape every ${lc} engagement around the way your business actually works. <span class="ph">Replace with final copy</span></p>`)+
+ `<section class="alt"><div class="wrap">${head('','Business challenges')}<div class="grid g3">${['Manual, repetitive work','Data that is hard to use','Systems that do not connect'].map((t,i)=>`<div class="card"><div class="ico">${icon(i)}</div><h4>${t}</h4><p class="sm">Placeholder description of the challenge.</p></div>`).join('')}</div></div></section>`+
+ sx('What we solve',li(['Placeholder: outcome one','Placeholder: outcome two','Placeholder: outcome three']))+
+ `<section class="alt"><div class="wrap">${head('','Our approach')}<ol class="steps">${['Discover','Strategize','Build','Scale'].map((s,i)=>`<li><b>${i+1}</b><h3>${s}</h3><p class="sm">Placeholder step description.</p></li>`).join('')}</ol></div></section>`+
+ sx('Key capabilities',`<div class="grid g2">${['Capability one','Capability two','Capability three','Capability four'].map((t,i)=>`<div class="card"><div class="ico">${icon(i+2)}</div><h4>${t}</h4><p class="sm">Placeholder capability description.</p></div>`).join('')}</div>`)+
+ `<section class="alt"><div class="wrap">${head('','How it works')}<div class="grid g3">${['Input: your data and context','Process: AI model and logic','Output: decisions and actions'].map((t,i)=>`<div class="card"><span class="num">0${i+1}</span><h4>${t}</h4><p class="sm">Placeholder description.</p></div>`).join('')}</div></div></section>`+
+ sx('Use cases',li(['Placeholder use case one','Placeholder use case two','Placeholder use case three']))+
+ `<section class="alt"><div class="wrap">${head('','Related case study')}<div class="grid g3">${caseCard(rel)}</div></div></section>`+
+ `<section><div class="wrap split"><h2>Frequently asked questions</h2>${faq()}</div></section>`+
+ cta(flag?'Talk to an AI expert':`Explore ${n}`,'Tell us about your business challenge. We’ll respond with next steps.','Start a Conversation')};
+T.sdetail=s=>detail('services',s);T.pdetail=s=>{const it=SOL.find(x=>x[0]==s);if(!it)return null;
+ return detail('solutions',s).replace('Business challenges','Core features').replace('What we solve','Business benefits').replace('Our approach','How it works').replace('Key capabilities','Integration').replace('>How it works</h2><div class="grid g3">','>Value proposition</h2><div class="grid g3">')};
+
+T.solutions=()=>pageH('Solutions','AI solutions','A growing portfolio of AI capabilities, each designed to deliver business value on its own or as part of a larger system.')+
+ `<section style="padding-top:var(--s6)"><div class="wrap"><div class="grid g3">${SOL.map((s,i)=>solCard(s,i,i==0)).join('')}</div></div></section>`+cta('Don’t see what you need?','Every business is different. We’ll design the solution around yours.','Start a Conversation');
+
+T.cases=()=>pageH('Case studies','AI in action','Real challenges. Intelligent solutions. Measurable outcomes. Entries below are placeholders for your final stories.')+
+ `<section style="padding-top:var(--s6)"><div class="wrap"><div class="chips" role="group" aria-label="Filter by AI capability" style="margin-bottom:32px">${['All',...new Set(CASES.map(c=>c[4]))].map((c,i)=>`<button class="chip" data-f="${c}" aria-pressed="${i==0}">${c}</button>`).join('')}</div>
+ <div class="grid g3" id="cl">${CASES.map(caseCard).join('')}</div></div></section>`+cta('Have a challenge like these?','Let’s explore what AI can do for your business.','Start a Conversation');
+
+T.case=s=>{const c=CASES.find(x=>x[0]==s);if(!c)return null;const i=CASES.indexOf(c),nx=CASES[(i+1)%CASES.length];
+ const blk=(t,b)=>`<section class="${t[1]?'alt':''}"><div class="wrap split"><h2>${t[0]}</h2><div>${b}</div></div></section>`;
+ const p='<p>Placeholder text. Replace with your final content.</p>';
+ return pageH(`<a href="#/case-studies">Case studies</a> / ${c[2]}`,c[2],`${c[1]} · ${c[4]}`)+
+ `<div class="wrap"><div class="cs"><div class="thumb" style="aspect-ratio:21/9"><img class="contain" src="assets/hero-illustration.svg" alt="Illustration of connected business data and analytics" width="1767" height="1245"></div></div></div>`+
+ blk(['Challenge'],p)+blk(['Approach',1],p)+blk(['Solution'],p)+
+ `<section class="alt"><div class="wrap">${head('','How it works')}<ol class="steps">${['Input','Analysis','AI system','Outcome'].map((s,i)=>`<li><b>${i+1}</b><h3>${s}</h3><p class="sm">Placeholder.</p></li>`).join('')}</ol></div></section>`+
+ blk(['Technology and capabilities'],`<div class="chips">${[c[4],'Integration','Data pipeline'].map(x=>`<span class="chip" style="cursor:default">${x}</span>`).join('')}</div>`)+
+ `<section class="alt"><div class="wrap">${head('','Business impact')}<div class="grid g3">${[1,2,3].map(()=>`<div class="card"><span class="ph">Add measured result supplied by client</span><p class="sm">Description of the result.</p></div>`).join('')}</div></div></section>`+
+ `<section><div class="wrap">${head('','Before and after')}<div class="ba"><div class="card"><h4>Before</h4><p class="sm">Placeholder: how the process worked before.</p></div><div class="card"><h4>After</h4><p class="sm">Placeholder: how it works with AI.</p></div></div></div></section>`+
+ `<section class="alt"><div class="wrap"><div class="card"><span class="ph">Optional: client testimonial, only if supplied</span></div></div></section>`+
+ `<section><div class="wrap">${head('','Related solutions')}<div class="grid g3">${SOL.slice(0,3).map((s,i)=>solCard(s,i)).join('')}</div>
+ <div style="margin-top:var(--s7)"><a class="btn btn-t" href="#/case-studies/${nx[0]}">Next case study: ${nx[2]} ${ARR}</a></div></div></section>`+
+ cta('Ready to build your own success story?','Let’s explore how AI can create measurable value for your business.','Start a Conversation')};
+
+T.about=()=>pageH('About','About EVENIR','We help businesses use AI to solve real business problems.')+
+ `<section><div class="wrap split"><h2>Who we are</h2><div><p class="lg">Placeholder company story. Replace with your final text.</p><img class="photo" src="assets/team-meeting-768.jpg" srcset="assets/team-meeting-300.jpg 300w, assets/team-meeting-768.jpg 768w" sizes="(max-width:900px) 100vw, 600px" width="768" height="512" alt="EVENIR team in a meeting room reviewing a dashboard on a wall screen" loading="lazy"></div></div></section>`+
+ `<section class="alt"><div class="wrap">${head('','Our AI philosophy')}<div class="grid g3">${['Business first','Practical over hype','Built to last'].map((t,i)=>`<div class="card"><div class="ico">${icon(i+3)}</div><h3>${t}</h3><p class="sm">Placeholder description.</p></div>`).join('')}</div></div></section>`+
+ `<section><div class="wrap">${head('','How we work')}<ol class="steps">${['Discover','Strategize','Build','Scale'].map((s,i)=>`<li><b>${i+1}</b><h3>${s}</h3></li>`).join('')}</ol></div></section>`+
+ `<section class="alt"><div class="wrap split"><h2>Why businesses choose EVENIR</h2>${`<ul class="list">${['Placeholder reason one','Placeholder reason two','Placeholder reason three'].map(x=>`<li>${x}</li>`).join('')}</ul>`}</div></section>`+
+ `<section><div class="wrap">${head('','Capabilities')}<div class="chips">${SOL.map(s=>`<a class="chip" href="#/solutions/${s[0]}">${s[1]}</a>`).join('')}</div><div style="margin-top:var(--s8)">${itGrid()}</div><img class="deco" src="assets/illustration-secondary.svg" alt="" width="1767" height="1245" loading="lazy"></div></section>`+
+ cta('Work with EVENIR','Let’s explore how AI can create measurable value for your business.','Start a Conversation');
+
+const fld=(id,l,t,req,extra='')=>`<div class="fld"><label for="${id}">${l}${req?' *':''}</label>${t=='ta'?`<textarea id="${id}" name="${id}" ${req?'required':''} aria-describedby="${id}e"></textarea>`:t=='sel'?`<select id="${id}" name="${id}" aria-describedby="${id}e"><option value="">Select a service</option>${SVC.flatMap(c=>c[1]).map(s=>`<option>${s[1]}</option>`).join('')}<option>Not sure yet</option></select>`:`<input id="${id}" name="${id}" type="${t}" ${req?'required':''} ${extra} aria-describedby="${id}e">`}<span class="err" id="${id}e" role="alert"></span></div>`;
+T.contact=()=>pageH('Contact','Let’s build what’s next.','Tell us about your business need and we’ll reply with next steps.')+
+ `<section style="padding-top:var(--s6)"><div class="wrap split"><div><h3>Contact information</h3><p style="margin-top:12px">${CONFIG.email?`<a href="mailto:${CONFIG.email}">${CONFIG.email}</a>`:'Email: add your address in CONFIG.'}</p><p class="sm" style="margin-top:8px">www.evenir.cz</p></div>
+ <div id="fw"><form class="form" id="cf" novalidate>
+  <div class="fr">${fld('name','Name','text',1,'autocomplete="name"')}${fld('email','Work email','email',1,'autocomplete="email"')}</div>
+  <div class="fr">${fld('company','Company','text',0,'autocomplete="organization"')}${fld('service','Interested service','sel',0)}</div>
+  ${fld('need','Business need','text',1)}${fld('details','Project details','ta',0)}
+  <div><button class="btn btn-p" type="submit">Start the Conversation</button></div></form></div></div></section>`;
+T.nf=()=>`<section class="nf"><div class="wrap"><div><h1>Something went off the path.</h1><p class="lg">The page you’re looking for doesn’t exist or has moved.</p><a class="btn btn-p" href="#/">Back to Homepage</a></div></div></section>`;
+
+/* ============ ROUTER ============ */
+const TITLES={'':'AI Solutions Built Around Your Business',services:'Services',solutions:'Solutions','case-studies':'Case Studies',about:'About',contact:'Contact'};
+function route(){
+ const h=location.hash;if(/^#cat\d$/.test(h))return;
+ const [a,b]=h.replace(/^#\/?/,'').split('/');let out;
+ if(a==''||a===undefined)out=T.home();else if(a=='services')out=b?T.sdetail(b):T.services();
+ else if(a=='solutions')out=b?T.pdetail(b):T.solutions();else if(a=='case-studies')out=b?T.case(b):T.cases();
+ else if(a=='about')out=T.about();else if(a=='contact')out=T.contact();
+ if(!out){out=T.nf();document.title='Page not found – EVENIR'}else document.title=(TITLES[a||'']||'EVENIR')+' – EVENIR';
+ const m=$('#main');m.innerHTML=out;window.scrollTo(0,0);m.focus({preventScroll:true});
+ $$('.nav a.l').forEach(l=>l.removeAttribute('aria-current'));
+ const act=$(`.nav a.l[href="#/${a=='cases'?'case-studies':a}"]`);if(act)act.setAttribute('aria-current','page');
+ closeMenu();bind();
+}
+function bind(){
+ $$('[data-f]').forEach(b=>b.onclick=()=>{$$('[data-f]').forEach(x=>x.setAttribute('aria-pressed',x==b));
+  $$('#cl .card').forEach(c=>c.style.display=(b.dataset.f=='All'||c.dataset.cat==b.dataset.f)?'':'none')});
+ $$('[data-jump]').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.getElementById(a.dataset.jump);t.open=true;t.scrollIntoView({behavior:'smooth',block:'start'})});
+ const f=$('#cf');if(f)f.onsubmit=async e=>{e.preventDefault();let bad=0;
+  const rules={name:v=>v.trim()?'':'Enter your name.',email:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)?'':'Enter a valid work email, like name@company.com.',need:v=>v.trim()?'':'Describe your business need in a few words.'};
+  let first;for(const k in rules){const el=f.elements[k],msg=rules[k](el.value),fl=el.closest('.fld');
+   $('#'+k+'e').textContent=msg;msg?(fl.dataset.err=1,el.setAttribute('aria-invalid','true'),bad++,first=first||el):(delete fl.dataset.err,el.removeAttribute('aria-invalid'))}
+  if(bad){first.focus();return}
+  const btn=f.querySelector('button');btn.disabled=true;btn.textContent='Sending…';
+  try{if(CONFIG.formEndpoint){const r=await fetch(CONFIG.formEndpoint,{method:'POST',headers:{Accept:'application/json'},body:new FormData(f)});if(!r.ok)throw 0}
+   $('#fw').innerHTML=`<div class="ok" role="status" tabindex="-1"><h3>Thank you. We’ve received your message.</h3><p>We’ll reply to your work email with next steps.</p><a class="btn btn-s" href="#/">Back to Homepage</a></div>`;$('#fw .ok').focus()}
+  catch(_){btn.disabled=false;btn.textContent='Start the Conversation';alert('Sorry, the message could not be sent. Please try again or email us directly.')}}};
+const bg=$('.burger'),nav=$('#nav');
+function closeMenu(){nav.classList.remove('open');bg.setAttribute('aria-expanded','false');bg.setAttribute('aria-label','Open menu');document.body.style.overflow=''}
+bg.onclick=()=>{const o=nav.classList.toggle('open');bg.setAttribute('aria-expanded',o);bg.setAttribute('aria-label',o?'Close menu':'Open menu');document.body.style.overflow=o?'hidden':''};
+document.addEventListener('keydown',e=>{if(e.key=='Escape')closeMenu()});
+matchMedia('(min-width:901px)').addEventListener('change',closeMenu);
+$('#yr').textContent=new Date().getFullYear();
+if(CONFIG.email)$('#fe').href='mailto:'+CONFIG.email;if(CONFIG.linkedin){$('#fl').href=CONFIG.linkedin;$('#fl').target='_blank';$('#fl').rel='noopener'}
+addEventListener('hashchange',route);route();
+</script>
+</body>
+</html>
