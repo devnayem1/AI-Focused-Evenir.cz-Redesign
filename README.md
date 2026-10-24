@@ -1,0 +1,1 @@
+# AI-Focused-Evenir.cz-Redesign
